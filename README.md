@@ -1,57 +1,69 @@
-# FED Practical 3 – Task Submission
-## 👋 Hello Team Xiteb,
+# React + TypeScript + Vite
 
-Thank you for sharing this opportunity and providing the task instructions.
-Please find below the details of the completed task.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🗂️ Project Details
+Currently, two official plugins are available:
 
-**Technology Stack Used:**
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- React (with Vite)
-- TypeScript
-- Tailwind CSS
-- React Slick (for slider functionality)
-- React Icons (for icons)
+## Expanding the ESLint configuration
 
-This project was scaffolded using the `React + TypeScript + Vite` template for fast performance and modular development.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## 🔧 Development Overview
-### ✅ Mode Attempted:
-**Development Only**  
-(Based on the design structure provided in the PDF)
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### 💻 Development Notes:
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-- Followed the layout and section structure exactly as provided in `FED - Practical 3.pdf`
-- Used the suggested theme colors, dummy content, and placeholder logos/images
-- Implemented all key sections:
-  - Navbar with dropdowns
-  - Banner with slider
-  - Services section
-  - Blog/news section
-  - Footer with newsletter and links
-- Added transitions and hover effects
-- **Note:** Responsiveness is not implemented in this version
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## ⏱️ Time Log
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-| Task              | Hours Spent |
-|-------------------|-------------|
-| React Development | 6 hours     |
-| Styling           | 4.5 hours   |
-| **Total Time**    | **10.5 hours** |
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## 🚀 How to Run
-
-1. Clone this repository
-2. Run `npm install` to install dependencies
-3. Run `npm run dev` to start the local development server
-
-## 📁 Folder Structure
-├── assets/ → Images and media files
-├── components/ → Reusable React components
-├── App.tsx → Root component
-├── main.tsx → Entry point
-├── index.css → Tailwind and global styles
-
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
