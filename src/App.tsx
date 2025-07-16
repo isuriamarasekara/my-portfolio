@@ -1,13 +1,13 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Experience from './pages/Experience';
-import Education from './pages/Education';
-import Skills from './pages/Skills';
-import Achievements from './pages/Achievements';
-import Contact from './pages/Contact';
+import Navbar from './components/Navbar.tsx';
+import Footer from './components/Footer.tsx';
+import Home from './pages/Home.tsx';
+import About from './pages/About.tsx';
+import Experience from './pages/Experience.tsx';
+import Education from './pages/Education.tsx';
+import Skills from './pages/Skills.tsx';
+import Achievements from './pages/Achievements.tsx';
+import Contact from './pages/Contact.tsx';
 
 const App: React.FC = () => {
   return (
